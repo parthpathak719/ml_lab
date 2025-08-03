@@ -39,7 +39,7 @@ def plot_test_data(X_test,colors):
     plt.scatter(X_test[:,0],X_test[:,1],c=colors,s=1)
     plt.xlabel('X')
     plt.ylabel('Y')
-    plt.title('kNN Classification (k=3)')
+    plt.title('kNN Classification (k=1)')
     plt.show()
 
 X_train,labels=generate_training_data()
