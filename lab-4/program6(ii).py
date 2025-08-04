@@ -21,18 +21,27 @@ def generate_test_data():
     test_points = np.c_[xx.ravel(), yy.ravel()]
     return test_points
 
-def plot_test_predictions(test_points, y_pred):
-    colors = ['blue' if label == 0 else 'red' for label in y_pred]
-    plt.scatter(test_points[:, 0], test_points[:, 1], c=colors, s=1)
-    plt.title("kNN Classification of Test Data (k=3)")
-    plt.xlabel("X feature")
-    plt.ylabel("Y feature")
+def plot_multiple_knn(X_train, y_train, test_points):
+    k_values = [1, 3, 5, 7]
+    plt.figure(figsize=(10, 10))
+
+    for index in range(len(k_values)):
+        k = k_values[index]
+        model = KNeighborsClassifier(n_neighbors=k)
+        model.fit(X_train, y_train)
+        predictions = model.predict(test_points)
+        colors = ['blue' if p == 0 else 'red' for p in predictions]
+
+        plt.subplot(2, 2, index+1)
+        plt.scatter(test_points[:, 0], test_points[:, 1], c=colors, s=1)
+        plt.xlabel("X")
+        plt.ylabel("Y")
+        plt.title("kNN Classification (k = " + str(k) + ")")
+
+    plt.tight_layout()
     plt.show()
 
 df = load()
 X_train, y_train = prepare_training_data(df)
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(X_train, y_train)
 test_points = generate_test_data()
-y_pred = knn.predict(test_points)
-plot_test_predictions(test_points, y_pred)
+plot_multiple_knn(X_train, y_train, test_points)

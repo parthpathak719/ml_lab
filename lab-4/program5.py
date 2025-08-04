@@ -21,29 +21,37 @@ def generate_test_data():
             test.append([x,y])
     return np.array(test)
 
-def classify_with_knn(X_train,labels,X_test):
-    knn=KNeighborsClassifier(n_neighbors=1)
-    knn.fit(X_train,labels)
-    return knn.predict(X_test)
+def classify_with_knn(X_train,labels,X_test,k):
+    model=KNeighborsClassifier(n_neighbors=k)
+    model.fit(X_train,labels)
+    return model.predict(X_test)
 
 def get_colors(predictions):
     colors=[]
     for p in predictions:
-        if(p==0):
+        if p==0:
             colors.append('blue')
         else:
             colors.append('red')
     return colors
 
-def plot_test_data(X_test,colors):
+X_train,labels=generate_training_data()
+X_test=generate_test_data()
+k_values=[1,3,5,7]
+
+plt.figure(figsize=(10,10))
+
+for index in range(len(k_values)):
+    k=k_values[index]
+    predictions=classify_with_knn(X_train,labels,X_test,k)
+    colors=get_colors(predictions)
+    
+    plt.subplot(2,2,index+1)
     plt.scatter(X_test[:,0],X_test[:,1],c=colors,s=1)
     plt.xlabel('X')
     plt.ylabel('Y')
-    plt.title('kNN Classification (k=1)')
-    plt.show()
+    plt.title('kNN Classification (k = '+str(k)+')')
 
-X_train,labels=generate_training_data()
-X_test=generate_test_data()
-predictions=classify_with_knn(X_train,labels,X_test)
-colors=get_colors(predictions)
-plot_test_data(X_test,colors)
+plt.tight_layout()
+plt.show()
+
