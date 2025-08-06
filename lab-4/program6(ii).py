@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 
 def load():
-    return pd.read_excel("lab-4/dataset.xlsx", sheet_name="National_Health_Interview_Surve")
+    return pd.read_excel("dataset.xlsx", sheet_name="National_Health_Interview_Surve")
 
 def prepare_training_data(df):
     df = df.dropna(subset=["Data_Value", "YearStart", "RiskFactor"])

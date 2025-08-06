@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.metrics import mean_squared_error,mean_absolute_percentage_error,r2_score
 
 def load():
-    return pd.read_excel("lab-4/Lab Session Data.xlsx",sheet_name="IRCTC Stock Price")
+    return pd.read_excel("Lab Session Data.xlsx",sheet_name="IRCTC Stock Price")
 
 def get_data():
     df=load()
