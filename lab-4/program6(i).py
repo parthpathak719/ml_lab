@@ -3,14 +3,13 @@ import matplotlib.pyplot as plt
 import random
 
 def load():
-    return pd.read_excel("lab-4/dataset.xlsx", sheet_name="National_Health_Interview_Surve")
+    return pd.read_excel("dataset.xlsx", sheet_name="National_Health_Interview_Surve")
 
 def preprocess(df):
     df=df[df["Data_Value"]!="Value suppressed"]
     df["Data_Value"]=pd.to_numeric(df["Data_Value"],errors="coerce")
     df=df.dropna(subset=["Data_Value"])
 
-    # Select only two specific RiskFactor categories for binary classification
     df=df[df["RiskFactor"].isin(["Hypertension","Smoking"])]
 
     return df
@@ -25,9 +24,9 @@ def sample_and_plot(df):
     colors=[]
     for label in labels:
         if(label=="Hypertension"):
-            colors.append("blue")  # class 0
+            colors.append("blue") 
         else:
-            colors.append("red")   # class 1
+            colors.append("red")  
 
     plt.scatter(X,Y,c=colors)
     plt.xlabel("YearStart")

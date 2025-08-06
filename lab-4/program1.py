@@ -5,7 +5,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, classification_report
 
 def load():
-    return pd.read_excel("lab-4/dataset.xlsx", sheet_name="National_Health_Interview_Surve")
+    return pd.read_excel("dataset.xlsx", sheet_name="National_Health_Interview_Surve")
 
 def preprocess(df):
     df=df[df["Data_Value"]!="Value suppressed"]
