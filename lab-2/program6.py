@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 def load():
- return pd.read_excel("lab-2/Lab Session Data.xlsx",sheet_name="thyroid0387_UCI")
+ return pd.read_excel("Lab Session Data.xlsx",sheet_name="thyroid0387_UCI")
 
 def cos(a,b):
  return np.dot(a,b)/(np.linalg.norm(a)*np.linalg.norm(b))

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 def load():
- return pd.read_excel("lab-2/Lab Session Data.xlsx",sheet_name="thyroid0387_UCI")
+ return pd.read_excel("Lab Session Data.xlsx",sheet_name="thyroid0387_UCI")
 
 def missing(df):
  return df.isna().sum()
