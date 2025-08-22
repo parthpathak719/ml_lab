@@ -1,7 +1,7 @@
 import pandas as pd
 
 def load():
- return pd.read_excel("lab-2/Lab Session Data.xlsx",sheet_name="thyroid0387_UCI")
+ return pd.read_excel("Lab Session Data.xlsx",sheet_name="thyroid0387_UCI")
 
 def to_binary(df):
  b=df.applymap(lambda x:1 if x=='t' else 0 if x=='f' else x)

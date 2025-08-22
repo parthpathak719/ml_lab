@@ -3,7 +3,7 @@ import statistics as st
 import matplotlib.pyplot as plt
 
 def load():
-    return pd.read_excel("lab-2/Lab Session Data.xlsx",sheet_name="IRCTC Stock Price")
+    return pd.read_excel("Lab Session Data.xlsx",sheet_name="IRCTC Stock Price")
 
 def stats(p):
     return st.mean(p),st.variance(p)
