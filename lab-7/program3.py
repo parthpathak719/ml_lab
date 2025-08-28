@@ -60,10 +60,10 @@ for name, model in classifiers.items():
     test_acc = accuracy_score(y_test, y_test_pred)
     train_f1 = f1_score(y_train, y_train_pred, average="weighted")
     test_f1 = f1_score(y_test, y_test_pred, average="weighted")
-    train_prec = precision_score(y_train, y_train_pred, average="weighted")
-    test_prec = precision_score(y_test, y_test_pred, average="weighted")
-    train_recall = recall_score(y_train, y_train_pred, average="weighted")
-    test_recall = recall_score(y_test, y_test_pred, average="weighted")
+    train_prec = precision_score(y_train, y_train_pred, average="weighted", zero_division=0)
+    test_prec = precision_score(y_test, y_test_pred, average="weighted", zero_division=0)
+    train_recall = recall_score(y_train, y_train_pred, average="weighted", zero_division=0)
+    test_recall = recall_score(y_test, y_test_pred, average="weighted", zero_division=0)
 
     results.append([
         name, round(train_acc, 3), round(test_acc, 3),
