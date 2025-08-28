@@ -8,7 +8,7 @@ def load_and_clean_data(filepath, sheet_name):
     df["Data_Value"] = pd.to_numeric(df["Data_Value"], errors="coerce")
     df = df.dropna(subset=["Data_Value"])
     return df
-
+ 
 def equal_width_binning(series, bins=4):
     """Perform equal-width binning and return bin labels."""
     return pd.cut(series, bins=bins, labels=False, include_lowest=True)
