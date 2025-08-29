@@ -45,7 +45,7 @@ rf = RandomForestClassifier(random_state=42)
 random_search = RandomizedSearchCV(
     estimator=rf,
     param_distributions=param_dist,
-    n_iter=20,            # number of random combinations to try
+    n_iter=2,            # number of random combinations to try
     cv=5,                 # 5-fold cross validation
     verbose=2,
     random_state=42,
