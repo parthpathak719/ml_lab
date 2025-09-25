@@ -1,10 +1,14 @@
+import pandas as pd
 import numpy as np
 
-# a) Summation unit
+def load_data():
+    # Make sure the sheet name matches exactly as in your Excel file
+    df = pd.read_excel("dataset.xlsx", sheet_name="National_Health_Interview_Surve")
+    return df
+
 def summation_unit(x):
     return sum(x)
 
-# b) Activation units
 def step(x):
     if x >= 0:
         return 1
@@ -32,18 +36,29 @@ def leaky_relu(x, alpha=0.01):
     else:
         return alpha * x
 
-# c) Comparator unit for error calculation
 def error_comparator(target, output):
     return target - output
 
-# Example usage (remove or comment out when integrating elsewhere)
-if __name__ == "__main__":
-    x = [1, -2, 3]
-    print("Summation:", summation_unit(x))
-    print("Step:", step(0.5))
-    print("Bipolar Step:", bipolar_step(-0.2))
-    print("Sigmoid:", sigmoid(1))
-    print("TanH:", tanh(1))
-    print("ReLU:", relu(-2))
-    print("Leaky ReLU:", leaky_relu(-2))
-    print("Error:", error_comparator(2, 0.5))
+df = load_data()
+if "Sample_Size" not in df.columns:
+    raise KeyError("Column 'Sample_Size' not found in the dataset.")
+x = df["Sample_Size"].head(5).tolist()
+x = df["Sample_Size"].head(5).tolist()
+
+# Summation
+s = summation_unit(x)
+print("Summation:", s)
+
+# Activation examples (for first value in x)
+val = x[0]
+print("Step:", step(val))
+print("Bipolar Step:", bipolar_step(val))
+print("Sigmoid:", sigmoid(val))
+print("TanH:", tanh(val))
+print("ReLU:", relu(val))
+print("Leaky ReLU:", leaky_relu(val))
+
+# Error comparator example
+target = 100
+output = val
+print("Error:", error_comparator(target, output))
